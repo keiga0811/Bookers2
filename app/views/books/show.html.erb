@@ -1,2 +1,23 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div class="container">
+	<div class="row">
+
+		<%= render 'users/userinfo', user: @user, book: @book %>
+
+		<div class="col-xs-9">
+			<h2>Book detail</h2>
+			<table class="table">
+				<tbody>
+					<tr>
+						<td><%= attachment_image_tag @user, :profile_image, :size =>'30x30', fallback: "noimage.png" %></td>
+						<td><%= link_to @bookfd.title, book_path(@bookfd.id) %></td>
+						<td><%= @bookfd.body %></td>
+						<% if @bookfd.user == current_user %>
+							<td><%= link_to "Edit", edit_book_path(@bookfd.id) %></td>
+							<td><%= link_to "Destroy", book_path(@bookfd.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+						<% end %>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
