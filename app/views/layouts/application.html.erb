@@ -10,6 +10,33 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="container">
+        <span>Bookers</span>
+        <nav class="nav-right">
+          <% if user_signed_in? %>
+            <ul class="nav-item">
+              <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "Users", root_path %></li>
+              <li><%= link_to "Books", root_path %></li>
+              <li><%= link_to "logout", root_path %></li>
+            </ul>
+          <% else %>
+            <ul class="nav-item">
+              <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "About", homes_about_path %></li>
+              <li><%= link_to "sign up",new_user_registration_path %></li>
+              <li><%= link_to "login", new_user_session_path %></li>
+            </ul>
+          <% end %>
+        </nav>
+      </div>
+    </header><!-- /header -->
+      <%= yield %>
+      <div class="row">
+        <div class="col-xs-3 col-xs-offset-9">
+          <p>CopyRight Infratop.inc</p>
+        </div>
+      </div>
   </body>
 </html>
